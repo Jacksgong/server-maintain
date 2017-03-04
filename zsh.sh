@@ -3,7 +3,7 @@
 # This file is licensed under the Apache License, Version 2.0
 # Copyright (C) 2017 Jacksgong(blog.dreamtobe.cn)
 
-# This script used for restore oh-my-zsh environment
+# This script used for restore zsh environment
 
 apt-get update
 apt-get install zsh
