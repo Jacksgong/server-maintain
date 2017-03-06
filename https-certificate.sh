@@ -74,6 +74,9 @@ if [ $need_generate ]; then
   # replace `YOUR_FIST_FQDN` to `$fqdn_first`
   while read line; do echo ${line//YOUR_FIST_FQDN/$fqdn_first} ; done < /etc/nginx/sites-available/certificated-https-tmp.conf > /etc/nginx/sites-available/certificated-https-tmp.conf.t ; mv /etc/nginx/sites-available/certificated-https-tmp.conf{.t,}
   ls /etc/nginx/sites-available/certificated-https-tmp.conf
+  echo "$(tput setaf 3)every thing is done now, you just need to enable the conf$(tput sgr 0)"
 else
   # TODO print tips
+  ls /etc/letsencrypt/live/$fqdn_first
+  echo "$(tput setaf 3)every thing is done now, you just need to config the ssl_certificate to your nginx conf, and add dhparam$(tput sgr 0)"
 fi
