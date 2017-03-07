@@ -7,8 +7,7 @@
 
 # please invoke this script on the su privilege
 
-certbot="$(which certbot-auto)"
-if [[ $certbot = *'not found' ]]; then
+if ! command -v cert-auto >/dev/null; then
   echo "$(tput setaf 3)not found certbot-auto, so install it first$(tput sgr 0)"
   cd /usr/local/sbin
   wget https://dl.eff.org/certbot-auto
@@ -19,7 +18,16 @@ fi
 read -p "Enter your FQDN for access your website(use spaces to apart eg: blog.dreamtobe.cn blog.jacksgong.com)" fqdns
 read -p "Enter your the root path for store your website(eg: /var/www/blog)" path
 
-mkdir $path
+mkdir -p $path
+
+exists_sites="$(ls /etc/nginx/sites-available/)"
+
+for site in $exists_sites
+do
+    abs_site='/etc/nginx/sites-available/'$site
+    echo scan $abs_site file
+    while read line; do echo ${line//$fqdns/tmp_$fqdns tmp.tmp.com} ; done < $abs_site > $abs_site.t ; mv $abs_site{.t,}
+done
 
 # create a temporary environment
 cp .source/https/cert-https-tmp.conf /etc/nginx/sites-available/
@@ -48,6 +56,14 @@ fi
 # clear temporary environment
 rm -rf /etc/nginx/sites-available/cert-https-tmp.conf
 rm -rf /etc/nginx/sites-enabled/cert-https-tmp.conf
+
+for site in $exists_sites
+do
+    abs_site='/etc/nginx/sites-available/'$site
+    echo restore $abs_site file
+    while read line; do echo ${line//tmp_$fqdns tmp.tmp.com/$fqdns} ; done < $abs_site > $abs_site.t ; mv $abs_site{.t,}
+done
+
 
 # for final environment
 need_generate= false
