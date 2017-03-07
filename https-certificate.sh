@@ -29,10 +29,11 @@ exists_sites="$(ls /etc/nginx/sites-available/)"
 for site in $exists_sites
 do
     abs_site='/etc/nginx/sites-available/'$site
-    echo scan $abs_site file
+    echo "$(tput setaf 3)scan $abs_site file$(tput sgr 0)"
     while read line; do echo ${line//$fqdns/tmp_$fqdns tmp.tmp.com} ; done < $abs_site > $abs_site.t ; mv $abs_site{.t,}
 done
 
+  echo "$(tput setaf 3)create a temporary environment$(tput sgr 0)"
 # create a temporary environment
 cp .source/https/cert-https-tmp.conf /etc/nginx/sites-available/
 # replace `YOUR_PATH` to `$path`
@@ -40,6 +41,7 @@ while read line; do echo ${line//YOUR_PATH/$path} ; done < /etc/nginx/sites-avai
 # replace `YOUR_FQDNS` to `$fqdns`
 while read line; do echo ${line//YOUR_FQDNS/$fqdns} ; done < /etc/nginx/sites-available/cert-https-tmp.conf > /etc/nginx/sites-available/cert-https-tmp.conf.t ; mv /etc/nginx/sites-available/cert-https-tmp.conf{.t,}
 ln -s /etc/nginx/sites-available/cert-https-tmp.conf /etc/nginx/sites-enabled/cert-https-tmp.conf
+echo "$(tput setaf 3)valid the temporary environment$(tput sgr 0)"
 nginx -s reload
 
 # application certificate
@@ -48,23 +50,24 @@ for fqdn in $fqdns
 do
   fqdn_with_d=$fqdn_with_d' -d '$fqdn
 done
+echo "$(tput setaf 3)generate the certificate for $fqdn_with_d on $path $(tput sgr 0)"
 certbot-auto certonly -a webroot --webroot-path=$path -d $fqdn_with_d
 
 # generate dhparam
 dhparam="$(sudo ls /etc/ssl/certs/dhparam.pem)"
 if [ -z "$installed_path" ]; then
-  echo "$(tput setaf 3)not found dhparam.pem, so generate it first$(tput sgr 0)"
+  echo "$(tput setaf 3)there isn't dhparam.pem, so generate it first$(tput sgr 0)"
   sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 fi
 
+echo "$(tput setaf 3)clear the temporary environment$(tput sgr 0)"
 # clear temporary environment
 rm -rf /etc/nginx/sites-available/cert-https-tmp.conf
 rm -rf /etc/nginx/sites-enabled/cert-https-tmp.conf
-
 for site in $exists_sites
 do
     abs_site='/etc/nginx/sites-available/'$site
-    echo restore $abs_site file
+    echo "$(tput setaf 3)restore $abs_site file$(tput sgr 0)"
     while read line; do echo ${line//tmp_$fqdns tmp.tmp.com/$fqdns} ; done < $abs_site > $abs_site.t ; mv $abs_site{.t,}
 done
 
@@ -95,9 +98,9 @@ if [ $need_generate ]; then
   # replace `YOUR_FIST_FQDN` to `$fqdn_first`
   while read line; do echo ${line//YOUR_FIST_FQDN/$fqdn_first} ; done < /etc/nginx/sites-available/certificated-https-tmp.conf > /etc/nginx/sites-available/certificated-https-tmp.conf.t ; mv /etc/nginx/sites-available/certificated-https-tmp.conf{.t,}
   ls /etc/nginx/sites-available/certificated-https-tmp.conf
-  echo "$(tput setaf 3)every thing is done now, you just need to enable the conf$(tput sgr 0)"
+  echo "$(tput setaf 3)Congratulations! every thing is done now, you just need to enable the conf$(tput sgr 0)"
 else
   # TODO print tips
   ls /etc/letsencrypt/live/$fqdn_first
-  echo "$(tput setaf 3)every thing is done now, you just need to config the ssl_certificate to your nginx conf, and add dhparam$(tput sgr 0)"
+  echo "$(tput setaf 3)Congratulations! every thing is done now, you just need to config the ssl_certificate to your nginx conf, and add dhparam$(tput sgr 0)"
 fi
