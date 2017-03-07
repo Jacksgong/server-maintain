@@ -5,8 +5,7 @@
 
 # This script is used for config non-bundled nginx for gitlab-omnibus on ubuntu 16.04.
 
-# for convenient, switch to root
-su root
+# please invoke this script on the su privilege
 
 # replace `# web_server['external_users'] = ['www-data']` to `web_server['external_users'] = ['www-data']`
 while read line; do echo ${line//\# web_server\[\'external_users\'\] = \[\'www-data\'\]/web_server\[\'external_users\'\] = \[\'www-data\'\]} ; done < /etc/gitlab/gitlab.rb > /etc/gitlab/gitlab.rb.t ; mv /etc/gitlab/gitlab.rb{.t,}
@@ -46,7 +45,14 @@ fqdns=$fqdn' '$fqdns
 wget https://gitlab.com/gitlab-org/gitlab-recipes/raw/master/web-server/nginx/gitlab-omnibus-nginx.conf
 mv gitlab-omnibus-nginx.conf /etc/nginx/sites-available/gitlab.conf
 # replace `server_name YOUR_SERVER_FQDN` to `server_name $fqdn`
-while read line; do echo ${line//server_name YOUR_SERVER_FQDN/server_name $fqdns} ; done < /etc/nginx/sites-available/gitlab.conf > /etc/nginx/sites-available/gitlab.conf.t ; mv /etc/nginx/sites-available/nginx.conf{.t,}
+while read line; do echo ${line//server_name YOUR_SERVER_FQDN/server_name $fqdns} ; done < /etc/nginx/sites-available/gitlab.conf > /etc/nginx/sites-available/gitlab.conf.t ; mv /etc/nginx/sites-available/gitlab.conf{.t,}
+
+mkdir /var/log/nginx/
+ln -s /etc/nginx/sites-available/gitlab.conf /etc/nginx/sites-enabled/gitlab.conf
+nginx -t
 
 # refresh nginx settings.
 nginx -s reload
+
+echo "$(tput setaf 2)Congratulate! Everything is ready now.\ngitlab conf on: /etc/gitlab/gitlab.rb, and its nginx conf on: /etc/nginx/sites-available/gitlab.conf$(tput sgr 0)"
+echo "$(tput setaf 2)if you finish change the record of $fqdn you can access your gitlab with http://$fqdn (the same to other FQDN you provided)$(tput sgr 0)"
