@@ -17,4 +17,6 @@ git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 
 chsh -s `which zsh`
+
+echo "$(tput setaf 3)Congratulate! it has been configured successfully, now we reboot the system to valid it.$(tput sgr 0)"
 shutdown -r 0
