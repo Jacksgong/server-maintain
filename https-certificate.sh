@@ -5,8 +5,7 @@
 
 # This script is used for application Let's Encrypt certificate on ubuntu 16.04.
 
-# for convenient, switch to root
-su root
+# please invoke this script on the su privilege
 
 certbot="$(which certbot-auto)"
 if [[ $certbot = *'not found' ]]; then
