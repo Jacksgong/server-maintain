@@ -51,7 +51,7 @@ do
   fqdn_with_d=$fqdn_with_d' -d '$fqdn
 done
 echo "$(tput setaf 3)generate the certificate for $fqdn_with_d on $path $(tput sgr 0)"
-certbot-auto certonly -a webroot --webroot-path=$path -d $fqdn_with_d
+certbot-auto certonly -a webroot --webroot-path=$path $fqdn_with_d
 
 # generate dhparam
 dhparam="$(sudo ls /etc/ssl/certs/dhparam.pem)"
