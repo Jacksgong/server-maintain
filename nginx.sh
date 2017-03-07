@@ -5,7 +5,7 @@
 
 # This script is used for restoring the nginx environment for ubuntu 16.04.
 
-mkdir init-nginx
+mkdir nginx-tmp
 cd nginx-tmp
 
 bash ../.source/nginx-ubuntu-16.04/0-install-basic-libs.sh
@@ -17,8 +17,10 @@ bash ../.source/nginx-ubuntu-16.04/4-install-nginx-self.sh
 cd ..
 rm -rf nginx-tmp
 
+cd .source/nginx-ubuntu-16.04/
 bash .source/nginx-ubuntu-16.04/config-auto-start.sh
 bash .source/nginx-ubuntu-16.04/config-nginx-default-setting.sh
+cd ../../
 
 echo "$(tput setaf 2)if you want to enable http2, please configure your conf like:\nlisten 443 ssl http2;$(tput sgr 0)"
 echo "$(tput setaf 2)now, it's it:$(tput sgr 0)"
