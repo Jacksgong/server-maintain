@@ -7,11 +7,15 @@
 
 # please invoke this script on the su privilege
 
-if ! command -v cert-auto >/dev/null; then
+if ! command -v certbot-auto >/dev/null; then
   echo "$(tput setaf 3)not found certbot-auto, so install it first$(tput sgr 0)"
   cd /usr/local/sbin
   wget https://dl.eff.org/certbot-auto
   chmod a+x /usr/local/sbin/certbot-auto
+  # just for cover people using .bash_profile as shell profile
+  source ~/.bash_profile
+  # just for cover people using .bash_profile as shell profile
+  source ~/.zshrc
   cd
 fi
 
