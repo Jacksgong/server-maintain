@@ -9,12 +9,23 @@ apt-get update
 apt-get install zsh
 apt-get install git-core
 
+echo "$(tput setaf 3)install oh-my-zsh$(tput sgr 0)"
 git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
+echo "$(tput setaf 3)restore zshrc file$(tput sgr 0)"
 cp .source/.zshrc ~/.zshrc
 
+echo "$(tput setaf 3)install autosuggestions plugin$(tput sgr 0)"
 git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+echo "$(tput setaf 3)install powerlevel9k theme$(tput sgr 0)"
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+
+echo "$(tput setaf 3)install autojump plugin$(tput sgr 0)"
+git clone https://github.com/joelthelion/autojump.git
+cd autojump
+sudo python ./install.py
+cd ..
+rm -rf autojump
 
 chsh -s `which zsh`
 
