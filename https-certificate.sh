@@ -19,6 +19,8 @@ fi
 read -p "Enter your FQDN for access your website(use spaces to apart eg: blog.dreamtobe.cn blog.jacksgong.com)" fqdns
 read -p "Enter your the root path for store your website(eg: /var/www/blog)" path
 
+mkdir $path
+
 # create a temporary environment
 cp .source/https/cert-https-tmp.conf /etc/nginx/sites-available/
 # replace `YOUR_PATH` to `$path`
