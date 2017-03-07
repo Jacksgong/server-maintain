@@ -5,17 +5,11 @@
 
 # This script is used for restoring the nginx environment for ubuntu 16.04.
 
-mkdir init-nginx
-cd init-nginx
-
 bash .source/nginx-ubuntu-16.04/0-install-basic-libs.sh
 bash .source/nginx-ubuntu-16.04/1-install-nginx-ct.sh
 bash .source/nginx-ubuntu-16.04/2-install-ngx_brotli.sh
 bash .source/nginx-ubuntu-16.04/3-install-openssl.sh
 bash .source/nginx-ubuntu-16.04/4-install-nginx-self.sh
-
-cd ..
-rm -rf init-nginx
 
 bash .source/nginx-ubuntu-16.04/config-auto-start.sh
 bash .source/nginx-ubuntu-16.04/config-nginx-default-setting.sh
