@@ -19,8 +19,8 @@ if ! command -v certbot-auto >/dev/null; then
   cd
 fi
 
-read -p "Enter your FQDN for access your website(use spaces to apart eg: blog.dreamtobe.cn blog.jacksgong.com)" fqdns
-read -p "Enter your the root path for store your website(eg: /var/www/blog)" path
+read -p "Enter your FQDN for access your website(use spaces to apart eg: blog.dreamtobe.cn blog.jacksgong.com): " fqdns
+read -p "Enter your the root path for store your website(eg: /var/www/blog): " path
 
 mkdir -p $path
 
@@ -72,7 +72,7 @@ done
 # for final environment
 need_generate= false
 while true; do
-    read -p "Do you need we generate temporary conf(/etc/nginx/sites-available/certificated-https-tmp.conf) for your?(y/n)" yn
+    read -p "Do you need we generate temporary conf(/etc/nginx/sites-available/certificated-https-tmp.conf) for your?(y/n) " yn
     case $yn in
         [Yy]* ) need_generate= true; break;;
         [Nn]* ) break;;
