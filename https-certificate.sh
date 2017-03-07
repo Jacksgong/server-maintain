@@ -77,7 +77,7 @@ need_generate= false
 while true; do
     read -p "Do you need we generate temporary conf(/etc/nginx/sites-available/certificated-https-tmp.conf) for your?(y/n) " yn
     case $yn in
-        [Yy]* ) need_generate= true; break;;
+        [Yy]* ) need_generate=true; break;;
         [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
@@ -86,7 +86,8 @@ done
 fqdn_first=''
 for fqdn in $fqdns
 do
-  fqdn_first=$fqdn; break;;
+  if
+  fqdn_first=$fqdn; break
 done
 
 if [ $need_generate ]; then
@@ -96,11 +97,12 @@ if [ $need_generate ]; then
   # replace `YOUR_FQDNS` to `$fqdns`
   while read line; do echo ${line//YOUR_FQDNS/$fqdns} ; done < /etc/nginx/sites-available/certificated-https-tmp.conf > /etc/nginx/sites-available/certificated-https-tmp.conf.t ; mv /etc/nginx/sites-available/certificated-https-tmp.conf{.t,}
   # replace `YOUR_FIST_FQDN` to `$fqdn_first`
-  while read line; do echo ${line//YOUR_FIST_FQDN/$fqdn_first} ; done < /etc/nginx/sites-available/certificated-https-tmp.conf > /etc/nginx/sites-available/certificated-https-tmp.conf.t ; mv /etc/nginx/sites-available/certificated-https-tmp.conf{.t,}
+  while read line; do echo ${line//YOUR_FIRST_FQDN/$fqdn_first} ; done < /etc/nginx/sites-available/certificated-https-tmp.conf > /etc/nginx/sites-available/certificated-https-tmp.conf.t ; mv /etc/nginx/sites-available/certificated-https-tmp.conf{.t,}
   ls /etc/nginx/sites-available/certificated-https-tmp.conf
   echo "$(tput setaf 3)Congratulations! every thing is done now, you just need to enable the conf$(tput sgr 0)"
 else
   # TODO print tips
+  echo "/etc/letsencrypt/live/$fqdn_first"
   ls /etc/letsencrypt/live/$fqdn_first
   echo "$(tput setaf 3)Congratulations! every thing is done now, you just need to config the ssl_certificate to your nginx conf, and add dhparam$(tput sgr 0)"
 fi
