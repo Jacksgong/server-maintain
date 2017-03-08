@@ -17,6 +17,6 @@ cd ../
 
 echo "$(tput setaf 3)install the nginx-1.11.9$(tput sgr 0)"
 cd nginx-1.11.9/
-./configure --add-module=../ngx_brotli --add-module=../nginx-ct-1.3.2 --with-openssl=../openssl --with-http_v2_module --with-http_ssl_module --with-http_gzip_static_module
+./configure --add-module=../ngx_brotli --add-module=../nginx-ct-1.3.2 --with-openssl=../openssl --with-http_v2_module --with-http_ssl_module --with-http_gzip_static_module --with-stream
 make
 sudo make install

@@ -10,13 +10,13 @@ echo "$(tput setaf 3)replace the nginx configuration file for\n enable gzip、br
 echo "$(tput setaf 2)tips: you can restore the default one through replacing with the /usr/local/nginx/conf/nginx.conf.default$(tput sgr 0)"
 sudo rm /usr/local/nginx/conf/nginx.conf
 sudo cp source-nginx.conf /usr/local/nginx/conf/nginx.conf
-chown www-data:www-data /usr/local/nginx/conf/nginx.conf
-mkdir /etc/nginx
-mkdir /etc/nginx/sites-available
-mkdir /etc/nginx/sites-enabled
+sudo chown www-data:www-data /usr/local/nginx/conf/nginx.conf
+sudo mkdir /etc/nginx
+sudo mkdir /etc/nginx/sites-available
+sudo mkdir /etc/nginx/sites-enabled
 
 echo "$(tput setaf 2)"
-ls /etc/nginx/
+sudo ls /etc/nginx/
 echo "$(tput setaf 0)"
 
 sudo ln -s /usr/local/nginx/sbin/nginx /usr/local/bin/nginx
