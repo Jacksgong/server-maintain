@@ -29,5 +29,8 @@ rm -rf autojump
 
 chsh -s `which zsh`
 
+iam=$(whoami)
+sudo usermod -s /bin/zsh $iam
+
 echo "$(tput setaf 3)Congratulate! it has been configured successfully, now we reboot the system to valid it.$(tput sgr 0)"
 shutdown -r 0
