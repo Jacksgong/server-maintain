@@ -11,7 +11,8 @@ echo "\n URL: https://blog.dreamtobe.cn/maintain-website-server/"
 echo "----------------------------------------------"
 
 echo "$(tput setaf 3)the current swap status:$(tput sgr 0)"
-sudo swapon --show
+swapon --show
+df -h
 free -h
 
 while true; do
@@ -23,10 +24,15 @@ while true; do
     esac
 done
 
-read -p "$(tput setaf 3)normally large than 4G is useless, and best choise is equal to or double the amount of RAM\nhow much spaces do you want to use for swap(eg(if you want 1G): 1G)\n:$(tput sgr 0)" swap_size
+read -p "$(tput setaf 3)normally large than 4G is useless, and best choise is equal to or double the amount of RAM\nhow much spaces do you want to use for swap(eg(if you want 1024M): 1024): $(tput sgr 0)" swap_size
 
-echo "allocate $swap_size swap space to /swapfile"
-sudo fallocate -l 1G /swapfile
+echo "allocate ${swap_size}M swap space to /swapfile"
+sudo fallocate -l ${swap_size}M /swapfile
+size=$(stat --printf="%s" /swapfile)
+
+if [[ -z $size || $size == '0' ]]; then
+   sudo -- sh -c "dd if=/dev/zero of=/swapfile bs=1M count=$size"
+fi
 sudo chmod 600 /swapfile
 ls -lh /swapfile
 
@@ -35,7 +41,7 @@ sudo mkswap /swapfile
 sudo swapon /swapfile
 
 echo "$(tput setaf 3)now, the current swap status is:$(tput sgr 0)"
-sudo swapon --show
+swapon --show
 free -h
 
 echo "persistent the swap"
