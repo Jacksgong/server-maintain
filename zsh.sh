@@ -5,9 +5,9 @@
 
 # This script used for restore zsh environment
 
-apt-get update
-apt-get install zsh
-apt-get install git-core
+sudo apt-get update
+sudo apt-get install zsh
+sudo apt-get install git-core
 
 echo "$(tput setaf 3)install oh-my-zsh$(tput sgr 0)"
 git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
