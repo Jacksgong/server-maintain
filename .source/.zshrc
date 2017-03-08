@@ -93,7 +93,6 @@ alias grep='grep --color=auto'
 alias zshconfig='vi ~/.zshrc'
 alias -s py=vi
 
-alias dropssh='ssh root@104.131.144.68'
 alias b='cd ..'
 
 alias alog='adb logcat -v time | grep -e'
@@ -104,14 +103,12 @@ alias alogw="adb logcat -v time '*:W'"
 alias apkinstall="adb install -r "
 alias alogclear='adb shell pm clear '
 
-alias gitalias="less /Users/jacksgong/.oh-my-zsh/plugins/git/git.plugin.zsh | grep alias"
+alias gitalias="less $HOME/.oh-my-zsh/plugins/git/git.plugin.zsh | grep alias"
 alias gitconfig="vim ~/.gitconfig"
 alias gitignore="vim ~/.gitignore"
 alias cpr="cp -r"
-alias pidcat="python /Users/Jacksgong/code/fork/pidcat/pidcat.py"
 
 alias dex2jar='sh /usr/local/bin/dex2jar/d2j-dex2jar.sh'
-alias aapt='/Users/Jacksgong/sdk/android-sdk/build-tools/24.0.2/aapt'
 
 alias grd='gradle '
 alias at='atom .'
@@ -124,5 +121,5 @@ POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S}"
 POWERLEVEL9K_NODE_VERSION_BACKGROUND='022'
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 
-[[ -s /root/.autojump/etc/profile.d/autojump.sh ]] && source /root/.autojump/etc/profile.d/autojump.sh
+[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 autoload -U compinit && compinit -u
