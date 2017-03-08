@@ -8,6 +8,11 @@
 # please invoke this script on the su privilege
 [[ $EUID -ne 0 ]] && echo -e "${red}Error:${plain} This script must be run as root!" && exit 1
 
+echo "--------------------------------------------------------------"
+echo " Auto config gitlab with non-bundled nginx for gitlab-omnibus"
+echo "\n URL: https://blog.dreamtobe.cn/maintain-website-server/"
+echo "--------------------------------------------------------------"
+
 # replace `# web_server['external_users'] = ['www-data']` to `web_server['external_users'] = ['www-data']`
 while read line; do echo ${line//\# web_server\[\'external_users\'\] = \[\'www-data\'\]/web_server\[\'external_users\'\] = \[\'www-data\'\]} ; done < /etc/gitlab/gitlab.rb > /etc/gitlab/gitlab.rb.t ; mv /etc/gitlab/gitlab.rb{.t,}
 # replace `# web_server['external_users'] = []` to `web_server['external_users'] = ['www-data']`

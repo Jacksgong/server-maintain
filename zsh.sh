@@ -5,6 +5,11 @@
 
 # This script used for restore zsh environment
 
+echo "--------------------------------------------------------"
+echo " Auto install&configure zsh with oh-my-zsh on ubuntu 16.04"
+echo "\n URL: https://blog.dreamtobe.cn/maintain-website-server/"
+echo "--------------------------------------------------------"
+
 sudo apt-get update
 sudo apt-get install zsh
 sudo apt-get install git-core

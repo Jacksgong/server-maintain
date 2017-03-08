@@ -5,6 +5,11 @@
 
 # This script is used for checking whether bbr has been enabled on ubuntu 16.04.
 
+echo "-------------------------------------------------------"
+echo " Auto checking whether bbr is working on ubuntu 16.04"
+echo "\n URL: https://blog.dreamtobe.cn/maintain-website-server/"
+echo "-------------------------------------------------------"
+
 uname="$(uname -r)"
 if [[ $uname == *"4.10"* ]]; then
         echo "$(tput setaf 3)bbr check: uname seams $(tput setaf 2)right$(tput sgr 0): $uname"

@@ -5,6 +5,11 @@
 
 # This script is used for restoring the nginx environment for ubuntu 16.04.
 
+echo "----------------------------------------------------------"
+echo " Auto install&configure nginx on ubuntu 16.04"
+echo "\n URL: https://blog.dreamtobe.cn/maintain-website-server/"
+echo "----------------------------------------------------------"
+
 mkdir nginx-tmp
 cd nginx-tmp
 
