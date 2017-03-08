@@ -6,6 +6,7 @@
 # This script is used for application Let's Encrypt certificate on ubuntu 16.04.
 
 # please invoke this script on the su privilege
+[[ $EUID -ne 0 ]] && echo -e "${red}Error:${plain} This script must be run as root!" && exit 1
 
 if ! command -v certbot-auto >/dev/null; then
   echo "$(tput setaf 3)not found certbot-auto, so install it first$(tput sgr 0)"
