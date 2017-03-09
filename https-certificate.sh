@@ -93,7 +93,6 @@ done
 fqdn_first=''
 for fqdn in $fqdns
 do
-  if
   fqdn_first=$fqdn; break
 done
 
