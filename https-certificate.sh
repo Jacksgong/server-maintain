@@ -109,6 +109,7 @@ if [ $need_generate ]; then
   while read line; do echo ${line//YOUR_FIRST_FQDN/$fqdn_first} ; done < /etc/nginx/sites-available/certificated-https-tmp.conf > /etc/nginx/sites-available/certificated-https-tmp.conf.t ; mv /etc/nginx/sites-available/certificated-https-tmp.conf{.t,}
   sudo ls /etc/nginx/sites-available/certificated-https-tmp.conf
   echo "$(tput setaf 3)Congratulations! every thing is done now, you just need to enable the conf$(tput sgr 0)"
+  echo "$(tput setaf 2)We don't make a link to sites-enabled folder yet, if you finish others, just link it by yourself$(tput sgr 0)"
 else
   # TODO print tips
   echo "/etc/letsencrypt/live/$fqdn_first"
