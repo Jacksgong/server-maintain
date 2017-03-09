@@ -7,7 +7,8 @@
 
 echo "----------------------------------------------------------"
 echo " Auto generate Let's Encrypt for any FQDN on ubuntu 16.04"
-echo "\n URL: https://blog.dreamtobe.cn/maintain-website-server/"
+echo " "
+echo " URL: https://blog.dreamtobe.cn/maintain-website-server/"
 echo "----------------------------------------------------------"
 
 # please invoke this script on the su privilege

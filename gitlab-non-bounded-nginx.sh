@@ -10,7 +10,8 @@
 
 echo "--------------------------------------------------------------"
 echo " Auto config gitlab with non-bundled nginx for gitlab-omnibus"
-echo "\n URL: https://blog.dreamtobe.cn/maintain-website-server/"
+echo " "
+echo " URL: https://blog.dreamtobe.cn/maintain-website-server/"
 echo "--------------------------------------------------------------"
 
 # replace `# web_server['external_users'] = ['www-data']` to `web_server['external_users'] = ['www-data']`

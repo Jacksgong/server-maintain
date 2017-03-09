@@ -7,7 +7,8 @@
 
 echo "----------------------------------------------------------"
 echo " Auto install&configure nginx on ubuntu 16.04"
-echo "\n URL: https://blog.dreamtobe.cn/maintain-website-server/"
+echo " "
+echo " URL: https://blog.dreamtobe.cn/maintain-website-server/"
 echo "----------------------------------------------------------"
 
 mkdir nginx-tmp

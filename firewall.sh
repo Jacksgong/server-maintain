@@ -7,7 +7,8 @@
 
 echo "--------------------------------------------------"
 echo " Auto configure UFW on ubuntu 16.04"
-echo "\n URL: https://blog.dreamtobe.cn/maintain-website-server/"
+echo " "
+echo " URL: https://blog.dreamtobe.cn/maintain-website-server/"
 echo "--------------------------------------------------"
 
 # Check whether UFW has been uninstalled and install it if yes.

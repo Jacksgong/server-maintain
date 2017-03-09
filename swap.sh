@@ -7,7 +7,8 @@
 
 echo "----------------------------------------------"
 echo " Auto distribute swap on ubuntu 16.04"
-echo "\n URL: https://blog.dreamtobe.cn/maintain-website-server/"
+echo " "
+echo " URL: https://blog.dreamtobe.cn/maintain-website-server/"
 echo "----------------------------------------------"
 
 echo "$(tput setaf 3)the current swap status:$(tput sgr 0)"
