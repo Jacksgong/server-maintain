@@ -62,7 +62,7 @@ certbot-auto certonly -a webroot --webroot-path=$path $fqdn_with_d
 
 # generate dhparam
 dhparam="$(sudo ls /etc/ssl/certs/dhparam.pem)"
-if [ -z "$installed_path" ]; then
+if [ -z $dhparam ]; then
   echo "$(tput setaf 3)there isn't dhparam.pem, so generate it first$(tput sgr 0)"
   sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 fi
