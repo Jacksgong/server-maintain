@@ -49,6 +49,8 @@ while read line; do echo ${line//YOUR_PATH/$path} ; done < /etc/nginx/sites-avai
 while read line; do echo ${line//YOUR_FQDNS/$fqdns} ; done < /etc/nginx/sites-available/cert-https-tmp.conf > /etc/nginx/sites-available/cert-https-tmp.conf.t ; mv /etc/nginx/sites-available/cert-https-tmp.conf{.t,}
 ln -s /etc/nginx/sites-available/cert-https-tmp.conf /etc/nginx/sites-enabled/cert-https-tmp.conf
 echo "$(tput setaf 3)valid the temporary environment$(tput sgr 0)"
+sudo ls /etc/nginx/sites-available/
+nginx -t
 nginx -s reload
 
 # application certificate
@@ -105,7 +107,7 @@ if [ $need_generate ]; then
   while read line; do echo ${line//YOUR_FQDNS/$fqdns} ; done < /etc/nginx/sites-available/certificated-https-tmp.conf > /etc/nginx/sites-available/certificated-https-tmp.conf.t ; mv /etc/nginx/sites-available/certificated-https-tmp.conf{.t,}
   # replace `YOUR_FIST_FQDN` to `$fqdn_first`
   while read line; do echo ${line//YOUR_FIRST_FQDN/$fqdn_first} ; done < /etc/nginx/sites-available/certificated-https-tmp.conf > /etc/nginx/sites-available/certificated-https-tmp.conf.t ; mv /etc/nginx/sites-available/certificated-https-tmp.conf{.t,}
-  ls /etc/nginx/sites-available/certificated-https-tmp.conf
+  sudo ls /etc/nginx/sites-available/certificated-https-tmp.conf
   echo "$(tput setaf 3)Congratulations! every thing is done now, you just need to enable the conf$(tput sgr 0)"
 else
   # TODO print tips
