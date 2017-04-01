@@ -32,7 +32,7 @@ sudo fallocate -l ${swap_size}M /swapfile
 size=$(stat --printf="%s" /swapfile)
 
 if [[ -z $size || $size == '0' ]]; then
-   sudo -- sh -c "dd if=/dev/zero of=/swapfile bs=1M count=$size"
+   sudo -- sh -c "dd if=/dev/zero of=/swapfile bs=1M count=$swap_size"
 fi
 sudo chmod 600 /swapfile
 ls -lh /swapfile
@@ -74,8 +74,6 @@ sudo sysctl vm.swappiness=$swappiness
 echo "vm.swappiness=$swappiness" | sudo tee -a /etc/sysctl.conf
 echo "assigned swappiness to $swappiness"
 
-echo "the current vfs_cache_pressure value is:"
-cat /proc/sys/vm/vfs_cache_pressure
 read -p "$(tput setaf 3)what value do you want assign to vfs_cache_pressure(0~100)(default: 80): $(tput sgr 0)" cache_pressure
 while true; do
   if [ -z $cache_pressure ]; then
