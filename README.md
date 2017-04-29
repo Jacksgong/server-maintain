@@ -1,5 +1,7 @@
 # Script
 
+相关使用说明，请到这里: [站点与服务器维护](https://blog.dreamtobe.cn/maintain-website-server/)
+
 ## License
   
 ```
